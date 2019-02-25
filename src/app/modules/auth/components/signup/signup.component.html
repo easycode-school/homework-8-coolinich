@@ -1,3 +1,130 @@
-<p>
-  signup works!
-</p>
+<div class="container-fluid">
+  <div class="row h-100vh align-items-center">
+    <div class="col-4 offset-md-2">
+      <mat-card class="example-card">
+        <mat-card-header class="mb-3">
+          <mat-card-title class="mb-3">Welcome to the <span class="text-pink">MostLikedPerson</span> </mat-card-title>
+          <mat-card-subtitle>Sign up or <a href="" routerLink="/auth/login">login</a> if you already have an account</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form (ngSubmit)="onSignup()" [formGroup]="signupForm">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('email').errors?.email && !signupForm.get('email').errors?.required">
+                Please enter a valid email
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('email').errors?.required">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <input type="password" matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('password').errors?.minlength && !signupForm.get('password').errors?.required">
+                Please enter a valid password
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('password').errors?.required">
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput placeholder="Nickname" formControlName="nickname" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('nickname').errors?.pattern && !signupForm.get('nickname').errors?.required">
+                Please enter a valid nickname
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('nickname').errors?.required">
+                Nickname is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput pattern="[a-zA-Z\- ]*" placeholder="First name" formControlName="first_name" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('first_name').errors?.pattern && !signupForm.get('first_name').errors?.required">
+                Please enter a valid first name
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('first_name').errors?.required">
+                First name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput pattern="[a-zA-Z\- ]*" placeholder="Last name" formControlName="last_name" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('last_name').errors?.pattern && !signupForm.get('last_name').errors?.required">
+                Please enter a valid last name
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('last_name').errors?.required">
+                Last name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput placeholder="Phone number" formControlName="phone" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="(signupForm.get('phone').errors?.minlength || signupForm.get('phone').errors?.pattern) && !signupForm.get('phone').errors?.required">
+                Please enter a valid phone number
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('phone').errors?.required">
+                Phone number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-3">
+              <input matInput placeholder="Gender" formControlName="gender_orientation" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('gender_orientation').errors?.pattern && !signupForm.get('gender_orientation').errors?.required">
+                Specify your gender (female or male)
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('gender_orientation').errors?.required">
+                Gender is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <input matInput placeholder="Country" formControlName="country" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('country').errors?.pattern && !signupForm.get('country').errors?.required">
+                Please specify valid country
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('country').errors?.required">
+                Country is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-6">
+              <input matInput placeholder="City" formControlName="city" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="signupForm.get('city').errors?.pattern && !signupForm.get('city').errors?.required">
+                Please specify valid city
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('city').errors?.required">
+                City is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput placeholder="Date of birth" formControlName="date_of_birth_day" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="(signupForm.get('date_of_birth_day').errors?.pattern || signupForm.get('date_of_birth_day').errors?.min || signupForm.get('date_of_birth_day').errors?.max) && !signupForm.get('date_of_birth_day').errors?.required">
+                Please specify your birthday
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('date_of_birth_day').errors?.required">
+                Birthday is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput placeholder="Month of birth" formControlName="date_of_birth_month" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="(signupForm.get('date_of_birth_month').errors?.pattern||signupForm.get('date_of_birth_month').errors?.min || signupForm.get('date_of_birth_month').errors?.max) && !signupForm.get('date_of_birth_month').errors?.required">
+                Please specify month of your birthday
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('date_of_birth_month').errors?.required">
+                Birthday is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-4">
+              <input matInput placeholder="Year of birth" formControlName="date_of_birth_year" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="(signupForm.get('date_of_birth_year').errors?.pattern || signupForm.get('date_of_birth_year').errors?.min || signupForm.get('date_of_birth_year').errors?.max) && !signupForm.get('date_of_birth_year').errors?.required">
+                Please specify correct year of your birthday
+              </mat-error>
+              <mat-error *ngIf="signupForm.get('date_of_birth_year').errors?.required">
+                Birthday is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <button type="submit" class="mt-3" mat-button [disabled]="signupForm.invalid">Signup</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- /.col-6 -->
+    <div class="col-6 h-100 bg-pink"></div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
